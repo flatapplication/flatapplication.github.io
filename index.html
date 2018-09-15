@@ -35,7 +35,7 @@
 	<script type="text/javascript">
       // FirebaseUI config.
       var uiConfig = {
-        signInSuccessUrl: 'flatapplication.github.io',
+        signInSuccessUrl: 'yourroom.html',
         signInOptions: [
           // Leave the lines as is for the providers you want to offer your users.
           firebase.auth.GoogleAuthProvider.PROVIDER_ID,
@@ -77,6 +77,7 @@
 
         <!-- Sidebar -->
         <div id="sidebar"></div>
+       
         <!-- /#sidebar-wrapper -->
 
         <!-- Page Content -->
@@ -120,6 +121,14 @@
         $("#wrapper").toggleClass("toggled");
     });
     </script>
+	<script>
+	function signOut(){
+	firebase.auth().signOut().then(function() {
+		console.log('Signed Out');}, function(error) {
+			console.error('Sign Out Error', error);
+			});
+	}
+		
 
 </body>
 
