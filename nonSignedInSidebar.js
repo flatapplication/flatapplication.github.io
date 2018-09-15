@@ -1,4 +1,4 @@
-class nonLoggedInSidebar extends React.Component {
+class nonSignedInSidebar extends React.Component {
     render() {
         return (
             <div id="sidebar-wrapper">
