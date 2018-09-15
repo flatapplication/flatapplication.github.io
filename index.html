@@ -57,6 +57,18 @@
       // The start method will wait until the DOM is loaded.
       ui.start('#firebaseui-auth-container', uiConfig);
     </script>
+
+
+
+<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+
+<script src="sidebar.js" type="text/babel"></script>
+
+
 </head>
 
 <body>
@@ -64,44 +76,15 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-                    <a href="#">
-                        F L A T
-                    </a>
-                </li>
-                <li style="font-size:17px;">
-                    <a href="yourroom.html">Your Room</a>
-                </li>
-                <li style="font-size:17px;">
-                    <a href="youritems.html">Items You Own</a>
-                </li>
-                <li style="font-size:17px;">
-                    <a href="loaneditems.html">Items Loaned Out</a>
-                </li>
-                <li style="font-size:17px;">
-                    <a href="requesteditems.html">Items Requested</a>
-                </li>
-                <li style="font-size:17px;">
-                    <a href="pastitems.html">Past Items</a>
-                </li>
-                <li style="font-size:17px;">
-                    <a href="nearby.html">Find Item Nearby</a>
-                </li>
-                <li style="font-size:17px;">
-                    <a href="support.html">Support</a>
-                </li>
-            </ul>
-        </div>
+        <div id="sidebar"></div>
         <!-- /#sidebar-wrapper -->
 
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <div class="container-fluid">
 			    <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle" style="color:black;">&#9776;</a>
-                <center><h1>Welcome to F L A T</h1><center>
-                <center><p>Once logged in, you'll see your personalized content below.</p><center>
+                <h1>Welcome to F L A T</h1>
+                <p>Once logged in, you'll see your personalized content below.</p>
 				<br>
 				<div id="firebaseui-auth-container"></div>
             </div>
