@@ -85,11 +85,17 @@
             <div class="container-fluid">
 			    <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle" style="color:black;">&#9776;</a>
                 <center><h1>Your Home</h1><center>
-                <pre id="object">
-				preObject.innerText = JSON.stringify(snap.val(), null, 3)
-				</pre>
+                <!-- <pre id="object"> -->
+				<!-- preObject.innerText = JSON.stringify(snap.val(), null, 3) -->
+				<!-- </pre> -->
+				<!-- <center><div id="firebaseui-auth-container"></div><center> -->
 				<br>
-				<center><div id="firebaseui-auth-container"></div><center>
+				<!-- <div class="container"> -->
+				<!-- <h1>Your Stuff</h1> -->
+				<!-- <div class="panel panel-default"> -->
+				<!-- <div id="yourStuff" class="panel-body"></div> -->
+				<!-- </div> -->
+				<!-- </div> -->
             </div>
         </div>
         <!-- /#page-content-wrapper -->
@@ -129,12 +135,6 @@
 			console.error('Sign Out Error', error);
 			});
 	}
-	</script>
-	<script>
-	var userDatabase = firebase.database();
-	document.getElementById('object');
-	const dbRefObject = firebase.database().ref().child('object');
-	dbRefObject.on('value', snap => console.log(snap.val()));
 	</script>
 </body>
 
