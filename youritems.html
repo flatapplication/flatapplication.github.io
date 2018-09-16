@@ -16,40 +16,39 @@ Test
 <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-firestore.js"></script>">
 <script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyBgAM3fwNadeQ_2iWT8xi27OGGIqi9z96g",
-    authDomain: "flatapp-9462e.firebaseapp.com",
-    databaseURL: "https://flatapp-9462e.firebaseio.com",
-    projectId: "flatapp-9462e",
-    storageBucket: "flatapp-9462e.appspot.com",
-    messagingSenderId: "228166715610"
-  };
-  firebase.initializeApp(config);
-</script>
-<script>
-function addItem(){
-	var db = firebase.firestore();
-    var ul = document.getElementById("dynamic-list");
-    var candidate = document.getElementById("candidate");
-    var li = document.createElement("li");
-    li.setAttribute('id',candidate.value);
-    li.appendChild(document.createTextNode(candidate.value));
-    ul.appendChild(li);
-	var user = "test";
-	
-	db.collection("test").doc(candidate).set({
-    quantity: "Los Angeles",
-    state: "CA",
-    country: "USA"
-})
-	.then(function() {
-    console.log("Document successfully written!");
-})
-.catch(function(error) {
-    console.error("Error writing document: ", error);
-});
-}
+	  // Initialize Firebase
+	  var config = {
+	    apiKey: "AIzaSyBgAM3fwNadeQ_2iWT8xi27OGGIqi9z96g",
+	    authDomain: "flatapp-9462e.firebaseapp.com",
+	    databaseURL: "https://flatapp-9462e.firebaseio.com",
+	    projectId: "flatapp-9462e",
+	    storageBucket: "flatapp-9462e.appspot.com",
+	    messagingSenderId: "228166715610"
+	  };
+	  firebase.initializeApp(config);		
+	function addItem(){
+		var db = firebase.firestore();
+		    var ul = document.getElementById("dynamic-list");
+		    var candidate = document.getElementById("candidate");
+		    var li = document.createElement("li");
+		    li.setAttribute('id',candidate.value);
+		    li.appendChild(document.createTextNode(candidate.value));
+		    ul.appendChild(li);
+			var user = firebase.auth().currentUser;
+			var name = user.displayName;
+
+			db.collection(name).doc(candidate).set({
+		    quantity: "Los Angeles",
+		    state: "CA",
+		    country: "USA"
+		})
+			.then(function() {
+		    console.log("Document successfully written!");
+		})
+		.catch(function(error) {
+		    console.error("Error writing document: ", error);
+		});	
+	}
   </script>
   <script>
 function removeItem(){
