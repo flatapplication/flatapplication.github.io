@@ -35,6 +35,4 @@ class Sidebar extends React.Component {
     }
 }
 
-const e = React.createElement;
-const domContainer = document.querySelector('#sidebar');
-ReactDOM.render(e(Sidebar), domContainer);
+
