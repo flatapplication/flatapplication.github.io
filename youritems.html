@@ -36,9 +36,9 @@ function addItem(){
     li.setAttribute('id',candidate.value);
     li.appendChild(document.createTextNode(candidate.value));
     ul.appendChild(li);
-	var user = firebase.default.auth().currentUser;
+	var user = "test";
 	var name = user.displayName;
-	db.collection(user.displayName).doc(candidate).set({
+	db.collection("test").doc(candidate).set({
     quantity: "Los Angeles",
     state: "CA",
     country: "USA"
