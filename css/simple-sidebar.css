@@ -143,6 +143,8 @@ body {
    display: flex;
    flex-direction: column;
    justify-content: center;
+   margin: 2em;
+   border: 0.5px dotted black;
    
    
 }
