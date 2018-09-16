@@ -67,7 +67,7 @@
 		<!-- Page Content -->
 		<div id="page-content-wrapper">
 			<a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle" style="color:black;">&#9776;</a>
-			<ul id="dynamic-list"></ul>
+			<div id="dynamic-list"></div>
 			<label>Name:</label>
 			<input type="text" id="name" /><br>
 			<label>Quantity:</label>
@@ -149,7 +149,7 @@
 
 					console.log("Item:", item);
 
-					ul.innerHTML += `<li><h3>Name: ${item.name}</h3><h3>Quantity: ${item.quantity}</h3></li>`;
+					ul.innerHTML += `<div class="dynamic-list-item"><h3>Name: ${item.name}</h3><h3>Quantity: ${item.quantity}</h3></div>`;
 				}
 
 				async function removeItem() {
