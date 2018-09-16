@@ -1,6 +1,4 @@
-
 const e = React.createElement;
-
 
 class ChoiceSideBar extends React.Component{
   state = {
