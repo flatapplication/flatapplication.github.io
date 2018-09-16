@@ -37,7 +37,7 @@ function addItem(){
     li.appendChild(document.createTextNode(candidate.value));
     ul.appendChild(li);
 	var user = "test";
-	var name = user.displayName;
+	
 	db.collection("test").doc(candidate).set({
     quantity: "Los Angeles",
     state: "CA",
