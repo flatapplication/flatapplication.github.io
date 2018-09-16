@@ -1,4 +1,8 @@
+import SideBar from "./sidebar"
+import nonSignedInSidebar from "./nonSignedInSidebar"
+
 const e = React.createElement;
+
 
 class ChoiceSideBar extends React.Component{
   state = {
