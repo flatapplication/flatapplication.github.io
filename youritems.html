@@ -1,62 +1,168 @@
-<html>
-<head>
-Test
-</head>
-<body>
-<form>
-    <ul id="dynamic-list"></ul>
-    <input type="text" id="candidate"/>
-    <button onclick="javascript:addItem()">add item</button>
-    <button onclick="javascript:removeItem()">remove item</button>
-</form>
-  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
-<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-<script src="https://www.gstatic.com/firebasejs/5.5.0/firebase.js"></script>
-<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-firestore.js"></script>">
-<script>
-	  // Initialize Firebase
-	  var config = {
-	    apiKey: "AIzaSyBgAM3fwNadeQ_2iWT8xi27OGGIqi9z96g",
-	    authDomain: "flatapp-9462e.firebaseapp.com",
-	    databaseURL: "https://flatapp-9462e.firebaseio.com",
-	    projectId: "flatapp-9462e",
-	    storageBucket: "flatapp-9462e.appspot.com",
-	    messagingSenderId: "228166715610"
-	  };
-	  firebase.initializeApp(config);		
-	function addItem(){
-		var db = firebase.firestore();
-		    var ul = document.getElementById("dynamic-list");
-		    var candidate = document.getElementById("candidate");
-		    var li = document.createElement("li");
-		    li.setAttribute('id',candidate.value);
-		    li.appendChild(document.createTextNode(candidate.value));
-		    ul.appendChild(li);
-			var user = firebase.auth().currentUser;
-			var name = user.displayName;
+<!DOCTYPE html>
+<html lang="en">
 
-			db.collection(name).doc(candidate).set({
-		    quantity: "Los Angeles",
-		    state: "CA",
-		    country: "USA"
-		})
-			.then(function() {
-		    console.log("Document successfully written!");
-		})
-		.catch(function(error) {
-		    console.error("Error writing document: ", error);
-		});	
-	}
-  </script>
-  <script>
-function removeItem(){
-    var ul = document.getElementById("dynamic-list");
-    var candidate = document.getElementById("candidate");
-    var item = document.getElementById(candidate.value);
-    ul.removeChild(item);
-}
-</script>
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<title>F L A T</title>
+	<link rel="shortcut icon" type="image/png" href="favicon.png">
+	<!-- Bootstrap core CSS -->
+	<link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+	<!-- Custom styles for this template -->
+	<link href="css/simple-sidebar.css" rel="stylesheet">
+
+	<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+	<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+	<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+	<script src="sidebar.js" type="text/babel"></script>
+	<script src="nonSignedInSidebar.js" type="text/babel"></script>
+	<script src="ChoiceSideBar.js" type="text/babel"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.5.0/firebase.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-firestore.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-auth.js"></script>
+
+	<script>
+		// Initialize Firebase
+		var config = {
+			apiKey: "AIzaSyBgAM3fwNadeQ_2iWT8xi27OGGIqi9z96g",
+			authDomain: "flatapp-9462e.firebaseapp.com",
+			databaseURL: "https://flatapp-9462e.firebaseio.com",
+			projectId: "flatapp-9462e",
+			storageBucket: "flatapp-9462e.appspot.com",
+			messagingSenderId: "228166715610"
+		};
+		firebase.initializeApp(config);
+		const database = firebase.firestore();
+		database.settings({ timestampsInSnapshots: true });
+	</script>
+	<!-- Bootstrap core JavaScript -->
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Menu Toggle Script -->
+	<script>
+		$("#menu-toggle").click(function (e) {
+			e.preventDefault();
+			$("#wrapper").toggleClass("toggled");
+		});
+	</script>
+
+	<script src="https://cdn.firebase.com/libs/firebaseui/3.4.1/firebaseui.js"></script>
+
+	<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.4.1/firebaseui.css" />
+</head>
+
+<body>
+	<div id="wrapper">
+		<!-- Sidebar -->
+		<!-- Using a react component -->
+		<div id="choiceSideBar"></div>
+		<!-- /#sidebar-wrapper -->
+		<!-- Page Content -->
+		<div id="page-content-wrapper">
+			<a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle" style="color:black;">&#9776;</a>
+			<ul id="dynamic-list"></ul>
+			<label>Name:</label>
+			<input type="text" id="name" /><br>
+			<label>Quantity:</label>
+			<input type="text" id="quantity" /><br>
+			<button onclick="addItem()">add item</button>
+			<button onclick="removeItem()">remove item</button>
+			<script>
+				$("#menu-toggle").click(function (e) {
+					e.preventDefault();
+					$("#wrapper").toggleClass("toggled");
+				});
+			</script>
+
+			<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+			<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+			<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+			<script src="sidebar.js" type="text/babel"></script>
+			<script src="nonSignedInSidebar.js" type="text/babel"></script>
+			<script src="ChoiceSideBar.js" type="text/babel"></script>
+			<script src="https://www.gstatic.com/firebasejs/5.5.0/firebase.js"></script>
+			<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
+			<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-firestore.js"></script>
+			<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-auth.js"></script>
+			<script>
+				// Initialize Firebase
+				var config = {
+					apiKey: "AIzaSyBgAM3fwNadeQ_2iWT8xi27OGGIqi9z96g",
+					authDomain: "flatapp-9462e.firebaseapp.com",
+					databaseURL: "https://flatapp-9462e.firebaseio.com",
+					projectId: "flatapp-9462e",
+					storageBucket: "flatapp-9462e.appspot.com",
+					messagingSenderId: "228166715610"
+				};
+				firebase.initializeApp(config);
+				const db = firebase.firestore();
+				db.settings({ timestampsInSnapshots: true });
+				const itemsRef = db.collection('items');
+
+				async function addItem() {
+					var ul = document.getElementById("dynamic-list");
+					const name = document.getElementById("name").value;
+					const quantity = document.getElementById("quantity").value;
+					// var li = document.createElement("li");
+					// li.setAttribute('id', itemEl.value);
+					// li.appendChild(document.createTextNode(itemEl.value));
+					// ul.appendChild(li);
+
+					// var user = firebase.auth().currentUser;
+					// console.log("Document successfully written!");
+
+					const user = firebase.auth().currentUser;
+					const counter = 0;
+					if (user) {
+						console.log('User id:', user.uid);
+					}
+					else {
+						console.log('NO USER');
+					}
+
+					const itemRef = itemsRef.doc(name);
+					const userUID = user.uid;
+					console.log('ItemRef:', itemRef);
+					if (counter == 0) {
+						await itemRef.set({
+							userUID,
+							quantity,
+							name
+						});
+					} else {
+						await itemRef.add({
+							userUID,
+							quantity,
+							name
+						});
+					}
+
+					const itemDoc = await itemRef.get();
+					const item = itemDoc.data();
+
+					console.log("Item:", item);
+
+					ul.innerHTML += `<li><h3>Name: ${item.name}</h3><h3>Quantity: ${item.quantity}</h3></li>`;
+				}
+
+				async function removeItem() {
+					var ul = document.getElementById("dynamic-list");
+					var candidate = document.getElementById("candidate");
+					var item = document.getElementById(candidate.value);
+					ul.removeChild(item);
+				}
+			</script>
+
+
+		</div>
+	</div>
 </body>
+
 </html>
