@@ -8,7 +8,7 @@ class ChoiceSideBar extends React.Component{
   constructor(props){
     super(props)
     
-    setInterval(() => this.setState({user: firebase.auth().currentUser}),1000); 
+    setInterval(() => firebase.auth().currentUser ? this.setState({user: firebase.auth().currentUser}) : null,1000); 
   }
 
   render(){
