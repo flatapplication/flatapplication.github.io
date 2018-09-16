@@ -2,7 +2,7 @@ const e = React.createElement;
 
 class ChoiceSideBar extends React.Component{
   render(){
-    var user = firebase.auth().currentUser;
+    var user = firebase ? firebase.auth().currentUser : null;
     return (user ? e(Sidebar) : e(nonSignedInSidebar))
   }
 }
