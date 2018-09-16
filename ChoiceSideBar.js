@@ -1,5 +1,3 @@
-import SideBar from "./sidebar"
-import nonSignedInSidebar from "./nonSignedInSidebar"
 
 const e = React.createElement;
 
