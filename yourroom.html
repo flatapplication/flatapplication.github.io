@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
     <meta charset="utf-8">
@@ -8,67 +9,78 @@
     <meta name="author" content="">
 
     <title>F L A T</title>
-	<link rel="shortcut icon" type="image/png" href="favicon.png">
+    <link rel="shortcut icon" type="image/png" href="favicon.png">
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="css/simple-sidebar.css" rel="stylesheet">
 
-	
-	<script src="https://www.gstatic.com/firebasejs/5.5.0/firebase.js"></script>
-	<script>
-	  // Initialize Firebase
-	  var config = {
-		apiKey: "AIzaSyBgAM3fwNadeQ_2iWT8xi27OGGIqi9z96g",
-		authDomain: "flatapp-9462e.firebaseapp.com",
-		databaseURL: "https://flatapp-9462e.firebaseio.com",
-		projectId: "flatapp-9462e",
-		storageBucket: "flatapp-9462e.appspot.com",
-		messagingSenderId: "228166715610"
-	  };
-	  firebase.initializeApp(config);
-	</script>
-	<script src="https://cdn.firebase.com/libs/firebaseui/3.4.1/firebaseui.js"></script>
-	<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.4.1/firebaseui.css" />
-	<script type="text/javascript">
-      // FirebaseUI config.
-      var uiConfig = {
-        signInSuccessUrl: 'yourroom.html',
-        signInOptions: [
-          // Leave the lines as is for the providers you want to offer your users.
-          firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-          firebase.auth.EmailAuthProvider.PROVIDER_ID,
-          firebase.auth.PhoneAuthProvider.PROVIDER_ID,
-        ],
-        // tosUrl and privacyPolicyUrl accept either url string or a callback
-        // function.
-        // Terms of service url/callback.
-        tosUrl: '<your-tos-url>',
-        // Privacy policy url/callback.
-        privacyPolicyUrl: function() {
-          window.location.assign('<your-privacy-policy-url>');
-        }
-      };
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="sidebar.js" type="text/babel"></script>
+    <script src="nonSignedInSidebar.js" type="text/babel"></script>
+    <script src="ChoiceSideBar.js" type="text/babel"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-auth.js"></script>
 
-      // Initialize the FirebaseUI Widget using Firebase.
-      var ui = new firebaseui.auth.AuthUI(firebase.auth());
-      // The start method will wait until the DOM is loaded.
-      ui.start('#firebaseui-auth-container', uiConfig);
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyBgAM3fwNadeQ_2iWT8xi27OGGIqi9z96g",
+            authDomain: "flatapp-9462e.firebaseapp.com",
+            databaseURL: "https://flatapp-9462e.firebaseio.com",
+            projectId: "flatapp-9462e",
+            storageBucket: "flatapp-9462e.appspot.com",
+            messagingSenderId: "228166715610"
+        };
+        firebase.initializeApp(config);
+        const database = firebase.firestore();
+        database.settings({ timestampsInSnapshots: true });
+    </script>
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
     </script>
 
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.4.1/firebaseui.js"></script>
 
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.4.1/firebaseui.css" />
+    <!-- <script type="text/javascript">
+        // FirebaseUI config.
+        // var uiConfig = {
+        //     signInSuccessUrl: 'yourroom.html',
+        //     signInOptions: [
+        //         // Leave the lines as is for the providers you want to offer your users.
+        //         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+        //         firebase.auth.EmailAuthProvider.PROVIDER_ID,
+        //         firebase.auth.PhoneAuthProvider.PROVIDER_ID,
+        //     ]
+        //     // tosUrl and privacyPolicyUrl accept either url string or a callback
+        //     // function.
+        //     // Terms of service url/callback.
+        //     //tosUrl: '<your-tos-url>',
+        //     // Privacy policy url/callback.
+        //     // privacyPolicyUrl: function () {
+        //     //   window.location.assign('<your-privacy-policy-url>');
+        //     //}
+        //};
 
-<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
-
-<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-	
-	
-<script src="sidebar.js" type="text/babel"></script>
-<script src="nonSignedInSidebar.js" type="text/babel"></script>
-
-<script src="ChoiceSideBar.js" type="text/babel"></script>
+        // Initialize the FirebaseUI Widget using Firebase.
+        var ui = new firebaseui.auth.AuthUI(firebase.auth());
+        // The start method will wait until the DOM is loaded.
+        ui.start('#firebaseui-auth-container', uiConfig);
+    </script> -->
 
 </head>
 
@@ -76,66 +88,109 @@
 
     <div id="wrapper">
 
-    <!-- Sidebar -->
-	<!-- Using a react component --> 
-	<div id="choiceSideBar"></div>
-	<!-- /#sidebar-wrapper -->
+        <!-- Sidebar -->
+        <!-- Using a react component -->
+        <div id="choiceSideBar"></div>
+        <!-- /#sidebar-wrapper -->
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <div class="container-fluid">
-			    <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle" style="color:black;">&#9776;</a>
-                <center><h1>Your Home</h1><center>
+                <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle" style="color:black;">&#9776;</a>
+                <center>
+                    <h1>Your Home</h1>
+                    <br>
+                </center>
+
+                <center><input label="Add Roommate" class="btn btn-primary" type="button" value="Add Roommate" onclick="addRoommate()"><br>
+                    <p id="demo"></p>
+                    <p id="demo1"></p>
+                </center>
                 <!-- <pre id="object"> -->
-				<!-- preObject.innerText = JSON.stringify(snap.val(), null, 3) -->
-				<!-- </pre> -->
-				<center><div id="firebaseui-auth-container"></div><center>
-				<br>
-				<!-- <div class="container"> -->
-				<!-- <h1>Your Stuff</h1> -->
-				<!-- <div class="panel panel-default"> -->
-				<!-- <div id="yourStuff" class="panel-body"></div> -->
-				<!-- </div> -->
-				<!-- </div> -->
+                <!-- preObject.innerText = JSON.stringify(snap.val(), null, 3) -->
+                <!-- </pre> -->
+                <!-- <center><div id="firebaseui-auth-container"></div><center> -->
+                <!-- <br> -->
+                <!-- <div class="container"> -->
+                <!-- <h1>Your Stuff</h1> -->
+                <!-- <div class="panel panel-default"> -->
+                <!-- <div id="yourStuff" class="panel-body"></div> -->
+                <!-- </div> -->
+                <!-- </div> -->
+                <ul id="yourStuff"></ul>
+
             </div>
         </div>
         <!-- /#page-content-wrapper -->
     </div>
     <!-- /#wrapper -->
 
-    
-    <!-- Firebase Config -->
-<script src="https://www.gstatic.com/firebasejs/5.5.0/firebase.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyBgAM3fwNadeQ_2iWT8xi27OGGIqi9z96g",
-    authDomain: "flatapp-9462e.firebaseapp.com",
-    databaseURL: "https://flatapp-9462e.firebaseio.com",
-    projectId: "flatapp-9462e",
-    storageBucket: "flatapp-9462e.appspot.com",
-    messagingSenderId: "228166715610"
-  };
-  firebase.initializeApp(config);
-</script>
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Menu Toggle Script -->
     <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
     </script>
-	<script>
-	function signOut(){
-	firebase.auth().signOut().then(function() {
-		console.log('Signed Out');}, function(error) {
-			console.error('Sign Out Error', error);
-			});
-	}
-	</script>
+
+
+    <script>
+        function signOut() {
+            firebase.auth().signOut().then(function () {
+                console.log('Signed Out');
+            }, function (error) {
+                console.error('Sign Out Error', error);
+            });
+        }
+    </script>
+
+    <script>
+
+        const itemList = document.querySelector('#yourStuff');
+
+        function renderItems(doc) {
+            let li = document.createElement('li');
+            let name = document.createElement('li');
+            let quantity = document.createElement('li');
+            let userUID = document.createElement('li');
+            let space = document.createElement('br');
+            const user = firebase.auth().currentUser;
+            const counter = 0;
+            if (user.uid == userUID) {
+
+                li.setAttribute('userUID', doc.id);
+                name.textContent = doc.data().name;
+                quantity.textContent = doc.data().quantity;
+                userUID.textContent = doc.data().userUID;
+
+                li.appendChild(name);
+                li.appendChild(quantity);
+                li.appendChild(userUID);
+                li.appendChild(space);
+
+                itemList.appendChild(li);
+            }
+            else if (user) {
+                console.log('User id:', user.uid);
+            }
+            else {
+                console.log('NO USER');
+            }
+
+        }
+        function addRoommate() {
+            const user = firebase.auth().currentUser;
+            document.getElementById("demo").innerHTML = "This is your ID: ";
+            document.getElementById("demo1").innerHTML = user.uid;
+            var input = document.createElement('input');
+            input.type = "text";
+        }
+        database.collection('items').get().then((snapshot) => {
+            snapshot.docs.forEach(doc => {
+                renderItems(doc);
+            })
+        })
+
+    </script>
+
 </body>
 
 </html>
