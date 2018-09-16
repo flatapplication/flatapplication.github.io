@@ -144,5 +144,8 @@ body {
    flex-direction: row;
    justify-content: center;
    
+   
 }
-
+.dynamic-list-item div{
+  width: 10px
+}
