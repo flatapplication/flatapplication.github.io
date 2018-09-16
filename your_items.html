@@ -1,0 +1,45 @@
+<html>
+<head>
+Test
+</head>
+<body>
+<form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+  </div>
+  <div class="form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<script src="https://www.gstatic.com/firebasejs/5.5.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBgAM3fwNadeQ_2iWT8xi27OGGIqi9z96g",
+    authDomain: "flatapp-9462e.firebaseapp.com",
+    databaseURL: "https://flatapp-9462e.firebaseio.com",
+    projectId: "flatapp-9462e",
+    storageBucket: "flatapp-9462e.appspot.com",
+    messagingSenderId: "228166715610"
+  };
+  firebase.initializeApp(config);
+</script>
+<script>
+var db = firebase.database();
+function writeUserData(userId, name, email, imageUrl) {
+  db.ref('users/' + userId).set({
+    username: name,
+    email: email,
+    profile_picture : imageUrl
+  });
+}
+</body>
+</html>
