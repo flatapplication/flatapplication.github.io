@@ -1,9 +1,19 @@
 const e = React.createElement;
 
 class ChoiceSideBar extends React.Component{
+  state = {
+    user: firebase.auth().currentUser
+  }
+  
+  constructor(props){
+    super(props)
+    
+    setInterval(() => this.setState({user: firebase.auth().currentUser}),1000); 
+  }
+
   render(){
     var user = firebase ? firebase.auth().currentUser : null;
-    return (user ? e(Sidebar) : e(nonSignedInSidebar))
+    return (this.state.user ? e(Sidebar) : e(nonSignedInSidebar))
   }
 }
 
