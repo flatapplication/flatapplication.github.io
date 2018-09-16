@@ -1,3 +1,4 @@
+
 /*!
  * Start Bootstrap - Simple Sidebar (https://startbootstrap.com/template-overviews/simple-sidebar)
  * Copyright 2013-2017 Start Bootstrap
@@ -145,6 +146,7 @@ body {
    justify-content: center;
    margin: 2em;
    border: 0.5px dotted black;
+   align-items: center;
    
    
 }
