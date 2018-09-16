@@ -84,8 +84,10 @@
         <div id="page-content-wrapper">
             <div class="container-fluid">
 			    <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle" style="color:black;">&#9776;</a>
-                <center><h1>Welcome to F L A T</h1><center>
-                <center><p>Once logged in, you'll see your personalized content below.</p><center>
+                <center><h1>Your Home</h1><center>
+                <pre id="object">
+				preObject.innerText = JSON.stringify(snap.val(), null, 3);
+				</pre>
 				<br>
 				<center><div id="firebaseui-auth-container"></div><center>
             </div>
@@ -127,8 +129,13 @@
 			console.error('Sign Out Error', error);
 			});
 	}
-		
-
+	</script>
+	<script>
+	var userDatabase = firebase.database();
+	document.getElementById('object');
+	const dbRefObject = firebase.database().ref().child('object');
+	dbRefObject.on('value', snap => console.log(snap.val()));
+	</script>
 </body>
 
 </html>
