@@ -4,6 +4,17 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-simple-sidebar/blob/master/LICENSE)
  */
 
+
+
+/* our custom styles */
+
+support {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+
 body {
   overflow-x: hidden;
 }
